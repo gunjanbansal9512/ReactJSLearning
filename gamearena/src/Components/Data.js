@@ -1,24 +1,7 @@
 import React from 'react';
 import image from './image.jpg';
 const Data = ({data})=>
-{
-   var getdata = data;
-    const [searchTerm, setSearchTerm] = React.useState("");
-    const [searchResults, setSearchResults] = React.useState([]);
-    
-    const handleChange = event => {
-      setSearchTerm(event.target.value);
-    };
-    React.useEffect(() => {
-        const results = getdata.filter(getdata =>
-          getdata.toLowerCase().includes(searchTerm)
-        );
-        setSearchResults(results);
-      }, [searchTerm]);
-    console.log(searchResults);
-// console.log("Data",data);
-      
-
+{      
     return(
         
         <div className="container-fluid" >
@@ -26,12 +9,12 @@ const Data = ({data})=>
       <nav className="navbar navbar-dark bg-dark justify-content-between " style={{ backgroundImage:" linear-gradient(#0F2027,#203A43,#2C5364)"}}>
     <a className="navbar-brand" style={{color: "bisque"}}>Game Arena</a>
     <form className="form-inline">
-       <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={handleChange}/>
+       <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
        
     </form>
  </nav>
        <div className="row" id="game-data">
-       {getdata.map(record=>(
+       {data.map(record=>(
                 <div className="col-sm-4" style={{backgroundColor:"#DAE0E2"}} >
                 <div className="card card-body h-100" style={{width: "20rem" ,display:"inline-block" , margin:"auto "}}>
                <img className="card-img-top" src={image}/>
