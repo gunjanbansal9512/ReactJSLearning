@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import Demo from './Demo';
-
+import Person from './Persons/Person';
 class App extends React.Component
 {
   
@@ -13,26 +12,54 @@ class App extends React.Component
        }
       ]
     }  
-switchNameHandler = ()=>
+switchNameHandler = (newname)=>
 {
   this.setState({person: [
-    { name:"Gunjan Bansal",age : 25},
+    { name:newname,age : 25},
     {
       name:"Harsh",age : 30
     }
    ]})
 
 }
+nameChangeHandler = (event)=>
+{
+  this.setState({person: [
+    { name:"Gunjan",age : 25},
+    {
+      name: event.target.value,age : 30
+    }
+   ]})
+
+}
   render()
   {
+    const style = {
+    
+      backgroundColor: 'Yellow',
+      font : 'inherit'  , 
+      border : "1px solid blue",
+      margin : "auto",
+      padding: '16px',
+      cursor : 'pointer'
+
+    };
     return(
       <div>
         <h1>Hiii</h1>
-        <button onClick={this.switchNameHandler}>
+        <button 
+        style = {style}
+        onClick={this.switchNameHandler.bind(this,"Gunjan Bansal")} >
           Switch Name
         </button>
-        <Demo name={this.state.person[0].name}></Demo>
-        <Demo name={this.state.person[1].name}></Demo>
+        <Person 
+        name={this.state.person[0].name} 
+        click = {this.switchNameHandler.bind(this,"Chota Baby")}
+        ></Person>
+        <Person
+        name={this.state.person[1].name}
+        changed={this.nameChangeHandler}
+        ></Person>
       </div>
     );
   }
